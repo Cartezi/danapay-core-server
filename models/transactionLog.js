@@ -3,11 +3,13 @@ var mongoose = require('mongoose');
 //mongoose.set('debug',true);
 
 //connect to mongoose
-mongoose.connect(process.env.MONGO_URL, { useMongoClient: true }, function(err){
-	if(err)
-		throw err;
-	console.log("connected successfully");
-});
+mongoose.connect(process.env.MONGO_URL, { useMongoClient: true });
+mongoose.connection
+	.on('error', function(err) {
+		console.log('Erreur lors de la connexion à MongoDB')
+		console.error('MongoDB error: %s', err);
+	});
+
 
 //Genre schema
 var transactionLogSchema = mongoose.Schema({

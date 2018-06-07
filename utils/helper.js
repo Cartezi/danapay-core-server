@@ -78,17 +78,23 @@ function _sendSignedTransaction(encodeAbi, fromAddress, fromPrivateKey, toAddres
 			if(error.message.startsWith("Transaction was not mined within 50 blocks"))
 			{
 				console.log("Transaction non minée au bout de 50 block. Minage encore possible dans quelques blocks...");
-				waitingCallback();
+				waitingCallback(process.env.EVENT_RETRY);
 			}
 			else if(error.message.startsWith("Returned error: replacement transaction underpriced"))
 			{
 				console.log("Ce compte a déjà une transaction en cours d'execution. Error : replacement transaction underpriced");
-				waitingCallback();
+				waitingCallback(process.env.EVENT_RETRY);
 			}
 			else if(error.message.startsWith("Returned error: known transaction:"))
 			{
 				console.log("Transaction déjà existante.");
-				waitingCallback();
+				waitingCallback(process.env.EVENT_RETRY);
+			}
+
+			else if(error.message.startsWith("Returned error: insufficient funds for gas * price + value"))
+			{
+				console.log("Le compte éméteur ne dispose pas d'assez d'ether.");
+				waitingCallback(process.env.EVENT_RETRY);
 			}
 			else errorCallback(error);
 		});
@@ -131,7 +137,7 @@ module.exports = {
 					web3.eth.getTransactionReceipt(_transationLog.hash).then(function(receipt){
 						if(receipt == null)
 						{
-							waitingCallback();
+							waitingCallback(process.env.EVENT_RETRY);
 						}
 						else if(receipt.status == 0 ){
 							console.log("Transaction au par avant échouée - rejeu de la transaction");
