@@ -1,0 +1,41 @@
+{
+  "name": "danapay",
+  "version": "0.0.2",
+  "description": "Transfert d'argent et payement via la blockchain",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "nf run dev=1 mocha",
+    "staging": "node --max-old-space-size=512 app.js"
+  },
+  "dependencies": {
+    "async": "^2.5.0",
+    "body-parser": "^1.18.2",
+    "dotenv": "^6.0.0",
+    "events": "^1.1.1",
+    "express": "^4.16.2",
+    "foreman": "^2.0.0",
+    "fs": "0.0.1-security",
+    "mocha": "^4.0.1",
+    "mongo": "^0.1.0",
+    "mongoose": "^4.13.0",
+    "mongoose-observer": "^0.2.1",
+    "request": "^2.83.0",
+    "socket.io": "^2.0.4",
+    "solc": "^0.4.18",
+    "v8-profiler": "^5.7.0",
+    "web3": "^1.0.0-beta.24"
+  },
+  "author": "CARTEZI Technology",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "nodemon": "^1.17.5"
+  },
+  "keywords": [
+    "API",
+    "REST",
+    "NODE"
+  ]
+}
