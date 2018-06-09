@@ -70,7 +70,7 @@ app.post('/api/sendEther', function (req, resp) {
 				result.userGettingMessage = "Unable to find user.";
 				resp.json(result);
 			}
-			else if(res ==null) {
+			else if(res ==null || res == undefined) {
 				console.log("Unable to find user. User is null");
 				result.userGettingMessage = "Unable to find user.";
 				resp.json(result);
@@ -142,7 +142,7 @@ app.post('/api/buyToken', function (req, res) {
 				result.userGettingMessage = "Unable to find user.";
 				res.json(result);
 			}
-			else if(userInfo ==null) {///A corriger...
+			else if(userInfo ==null || userInfo == undefined) {///A corriger...
 				//Delete account from blockchain
 				console.log("L'utilisateur recherché n'existe pas : User = null");
 				result.userGettingMessage = "Unable to find user.";
@@ -219,7 +219,7 @@ app.post('/api/sellToken', function (req, res) {
 			result.userGettingMessage = "Unable to find user.";
 			res.json(result);
 		}
-		else if(userInfo ==null) {
+		else if(userInfo ==null || userInfo == undefined) {
 			//Delete account from blockchain
 			console.log("Unable to find user. User is null");
 			result.userGettingMessage = "Unable to find user.";
@@ -295,7 +295,7 @@ app.post('/api/transferToken', function (req, res) {
 			result.userGettingMessage = "Unable to find user.";
 			res.json(result);
 		}
-		else if(senderInfo ==null) {
+		else if(senderInfo ==null || senderInfo == undefined) {
 			//Delete account from blockchain
 			console.log("Unable to find user. User is null");
 			result.userGettingMessage = "Unable to find user.";
@@ -311,7 +311,7 @@ app.post('/api/transferToken', function (req, res) {
 					result.userGettingMessage = "Unable to find user.";
 					res.json(result);
 				}
-				if(recipientInfo ==null) {
+				if(recipientInfo ==null || recipientInfo == undefined ) {
 					//Delete account from blockchain
 					console.log("Unable to find user. User is null");
 					result.userGettingMessage = "Unable to find user.";
