@@ -1,0 +1,72 @@
+{
+  "name": "danapay-core-server",
+  "scripts": {
+  },
+  "env": {
+    "ADMIN_ADDRESS": {
+      "required": true
+    },
+    "ADMIN_PRIVATEKEY": {
+      "required": true
+    },
+    "ENV": {
+      "required": true
+    },
+    "EVENT_ON_ERROR": {
+      "required": true
+    },
+    "EVENT_PROCESSING": {
+      "required": true
+    },
+    "EVENT_RETRY": {
+      "required": true
+    },
+    "EVENT_SUCCEED": {
+      "required": true
+    },
+    "GET_ADMIN_PARAMS_REQ": {
+      "required": true
+    },
+    "GET_USER_REQ": {
+      "required": true
+    },
+    "HELPER_GASLIMIT": {
+      "required": true
+    },
+    "HELPER_GASPRICE": {
+      "required": true
+    },
+    "MONGO_URL": {
+      "required": true
+    },
+    "PORT": {
+      "required": true
+    },
+    "PORT_WS": {
+      "required": true
+    },
+    "WEB3_ADDRESS": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "Standard-1X"
+    },
+    "staging": {
+      "quantity": 1,
+      "size": "Standard-1X"
+    },
+    "dev": {
+      "quantity": 1,
+      "size": "Standard-1X"
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}

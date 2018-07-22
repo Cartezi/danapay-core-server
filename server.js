@@ -157,12 +157,15 @@ app.post('/api/buyToken', function (req, res) {
 	
 				contractInstance.methods.transferToSender(params.amount).estimateGas({from: process.env.ADMIN_ADDRESS}, function(error, gasAmount){
 					console.log('Gas limit '+gasAmount);
+<<<<<<< HEAD
 					if(gasAmount== undefined){
 						console.log('The operaction risk to be in error soon ');
 						console.log('Seller : '+adminAddress);
 						console.log('Buyer : '+user.ethAccount);
 						console.log('Amount : '+params.amount);
 					}
+=======
+>>>>>>> parent of cc175c7... show parameters when gas limit is undefined / buyToken
 				});
 			
 				Helper.sendSignedTransaction(
