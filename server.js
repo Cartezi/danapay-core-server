@@ -158,7 +158,7 @@ app.post('/api/buyToken', function (req, res) {
 					if(gasAmount== undefined){
 						console.log('The operaction risk to be in error soon ');
 						console.log('Seller : '+adminAddress);
-						console.log('Buyer : '+user.ethAccount);
+						console.log('Buyer : '+userAddress);
 						console.log('Amount : '+params.amount);
 					}
 				});
