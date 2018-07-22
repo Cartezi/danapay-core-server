@@ -2,6 +2,7 @@
 .env
 node_modules
 heap
+.env
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

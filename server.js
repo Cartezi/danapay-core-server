@@ -69,7 +69,7 @@ app.post('/api/sendEther', function (req, resp) {
 				result.userGettingMessage = "Unable to find user.";
 				resp.json(result);
 			}
-			else if(res ==null || res == undefined) {
+			else if(res ==null || res == undefined || JSON.parse(res).user.ethAccount == undefined) {
 				console.log("Unable to find user. User is null");
 				result.userGettingMessage = "Unable to find user.";
 				resp.json(result);
@@ -141,7 +141,7 @@ app.post('/api/buyToken', function (req, res) {
 				result.userGettingMessage = "Unable to find user.";
 				res.json(result);
 			}
-			else if(userInfo ==null || userInfo == undefined) {///A corriger...
+			else if(userInfo == null || userInfo == undefined || JSON.parse(userInfo).user.ethAccount == undefined) {
 				//Delete account from blockchain
 				console.log("L'utilisateur recherché n'existe pas : User = null");
 				result.userGettingMessage = "Unable to find user.";
@@ -157,15 +157,12 @@ app.post('/api/buyToken', function (req, res) {
 	
 				contractInstance.methods.transferToSender(params.amount).estimateGas({from: process.env.ADMIN_ADDRESS}, function(error, gasAmount){
 					console.log('Gas limit '+gasAmount);
-<<<<<<< HEAD
 					if(gasAmount== undefined){
 						console.log('The operaction risk to be in error soon ');
 						console.log('Seller : '+adminAddress);
 						console.log('Buyer : '+user.ethAccount);
 						console.log('Amount : '+params.amount);
 					}
-=======
->>>>>>> parent of cc175c7... show parameters when gas limit is undefined / buyToken
 				});
 			
 				Helper.sendSignedTransaction(
@@ -195,7 +192,7 @@ app.post('/api/buyToken', function (req, res) {
 						// res.json(result);
 					},
 					function(error){
-						console.log(error);
+						console.log("Error :"+ error);
 						event.emit(process.env.EVENT_ON_ERROR,params.transactionId);					
 						// result.transactionMessageResult = process.env.TRANSACTION_STATUS_ERROR;
 						// res.json(result);
@@ -227,7 +224,7 @@ app.post('/api/sellToken', function (req, res) {
 			result.userGettingMessage = "Unable to find user.";
 			res.json(result);
 		}
-		else if(userInfo ==null || userInfo == undefined) {
+		else if(userInfo ==null || userInfo == undefined || JSON.parse(userInfo).user.ethAccount == undefined) {
 			//Delete account from blockchain
 			console.log("Unable to find user. User is null");
 			result.userGettingMessage = "Unable to find user.";
@@ -303,7 +300,7 @@ app.post('/api/transferToken', function (req, res) {
 			result.userGettingMessage = "Unable to find user.";
 			res.json(result);
 		}
-		else if(senderInfo ==null || senderInfo == undefined) {
+		else if(senderInfo ==null || senderInfo == undefined || JSON.parse(senderInfo).user.ethAccount == undefined) {
 			//Delete account from blockchain
 			console.log("Unable to find user. User is null");
 			result.userGettingMessage = "Unable to find user.";
@@ -319,17 +316,19 @@ app.post('/api/transferToken', function (req, res) {
 					result.userGettingMessage = "Unable to find user.";
 					res.json(result);
 				}
-				if(recipientInfo ==null || recipientInfo == undefined ) {
+				if(recipientInfo == null || recipientInfo == undefined || JSON.parse(recipientInfo).user.ethAccount == undefined) {
 					//Delete account from blockchain
 					console.log("Unable to find user. User is null");
 					result.userGettingMessage = "Unable to find user.";
 					res.json(result);
 				}else {
-					//console.log('Seller : '+adminAddress);
-					//console.log('Buyer : '+user.ethAccount);
-					//console.log('Amount : '+params.amount);
+					
 					result.recipientGettingMessage = "Recipient successfully found by phone number.";
 					console.log("Envoi des jetons");
+
+					console.log('Seller : '+JSON.parse(recipientInfo).user.ethAccount);
+					console.log('Buyer : '+JSON.parse(senderInfo).user.ethAccount);
+					console.log('Amount : '+params.amount);
 
 					contractInstance.methods.transfer(JSON.parse(recipientInfo).user.ethAccount, params.amount).estimateGas({from: process.env.ADMIN_ADDRESS}, function(error, gasAmount){
 						console.log('Gas limit '+gasAmount);

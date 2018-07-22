@@ -79,6 +79,16 @@ function _sendSignedTransaction(encodeAbi, fromAddress, fromPrivateKey, toAddres
 				console.log("Transaction non minée au bout de 50 block. Minage encore possible dans quelques blocks...");
 				waitingCallback(process.env.EVENT_RETRY);
 			}
+			else if(error.message.startsWith("Transaction was not mined within750 blocks"))
+			{
+				console.log("Transaction non minée au bout de 50 block. Minage encore possible dans quelques blocks...");
+				waitingCallback(process.env.EVENT_RETRY);
+			}
+			else if(error.message.startsWith("Transaction was not mined within750 seconds"))
+			{
+				console.log("Transaction non minée au bout de 50 block. Minage encore possible dans quelques blocks...");
+				waitingCallback(process.env.EVENT_RETRY);
+			}
 			else if(error.message.startsWith("Returned error: replacement transaction underpriced"))
 			{
 				console.log("Ce compte a déjà une transaction en cours d'execution. Error : replacement transaction underpriced");
