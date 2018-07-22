@@ -137,7 +137,7 @@ app.post('/api/buyToken', function (req, res) {
 			{
 				//Delete account from blockchain
 				console.log("Impossible de se connecter à l'API Users");
-				console.log(err);
+				console.log(err); 
 				result.userGettingMessage = "Unable to find user.";
 				res.json(result);
 			}
@@ -147,9 +147,7 @@ app.post('/api/buyToken', function (req, res) {
 				result.userGettingMessage = "Unable to find user.";
 				res.json(result);
 			}else {
-				//console.log('Seller : '+adminAddress);
-				//console.log('Buyer : '+user.ethAccount);
-				//console.log('Amount : '+params.amount);
+				
 				result.userGettingMessage = "User successfully found by phone number.";
 				var userAddress = JSON.parse(userInfo).user.ethAccount;
 				var userKey	= JSON.parse(userInfo).user.privateKey;
@@ -158,7 +156,10 @@ app.post('/api/buyToken', function (req, res) {
 				contractInstance.methods.transferToSender(params.amount).estimateGas({from: process.env.ADMIN_ADDRESS}, function(error, gasAmount){
 					console.log('Gas limit '+gasAmount);
 					if(gasAmount== undefined){
+<<<<<<< HEAD
 						console.log('The operaction risk to be in error soon ');
+=======
+>>>>>>> cc175c7... show parameters when gas limit is undefined / buyToken
 						console.log('Seller : '+adminAddress);
 						console.log('Buyer : '+user.ethAccount);
 						console.log('Amount : '+params.amount);
