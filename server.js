@@ -157,9 +157,12 @@ app.post('/api/buyToken', function (req, res) {
 					console.log('Gas limit '+gasAmount);
 					if(gasAmount== undefined){
 <<<<<<< HEAD
+<<<<<<< HEAD
 						console.log('The operaction risk to be in error soon ');
 =======
 >>>>>>> cc175c7... show parameters when gas limit is undefined / buyToken
+=======
+>>>>>>> origin/master
 						console.log('Seller : '+adminAddress);
 						console.log('Buyer : '+user.ethAccount);
 						console.log('Amount : '+params.amount);
