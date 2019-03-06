@@ -1,20 +1,8 @@
 const Web3 				= require('web3');
-const async 			= require('async');
-const compiledCode 		= require('../smart-contract/DanapayToken');
 const TransactionLogs	= require('../models/transactionLog');
-const profiler			= require('v8-profiler');
-const fs 				= require('fs');
-var adminAddress 		= process.env.ADMIN_ADDRESS;
-var contractAddress		= process.env.CONTRACT_ADDRESS;
 var gasLimit			= process.env.HELPER_GASLIMIT;
 var gasPrice			= process.env.HELPER_GASPRICE;
 
-var currentGasPrice;
-var contractInstance = {
-						loading : "false",
-						value : "0"
-						};
-var calls = [];
 
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.WEB3_ADDRESS));
 
@@ -187,15 +175,6 @@ module.exports = {
 		console.log("HELPER_GASLIMIT :"+process.env.HELPER_GASLIMIT);
 		console.log("HELPER_GASPRICE :"+process.env.HELPER_GASPRICE);
 	}, 
-
-	takeSnapshot : function(index)
-	{
-		var snapshot = profiler.takeSnapshot();
-		snapshot.export(function(error, result){
-			fs.writeFileSync('../heap/napaycore'+index+'.heapsnapshot', result); 
-			snapshot.delete();
-		});
-	}
 
 }
 

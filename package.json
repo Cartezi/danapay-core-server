@@ -15,7 +15,6 @@
     "events": "^1.1.1",
     "express": "^4.16.2",
     "foreman": "^2.0.0",
-    "fs": "0.0.1-security",
     "mocha": "^4.0.1",
     "mongo": "^0.1.0",
     "mongoose": "^4.13.0",
@@ -23,7 +22,6 @@
     "request": "^2.83.0",
     "socket.io": "^2.0.4",
     "solc": "^0.4.18",
-    "v8-profiler": "^5.7.0",
     "web3": "^1.0.0-beta.24"
   },
   "author": "CARTEZI Technology",
