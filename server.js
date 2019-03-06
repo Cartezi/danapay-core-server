@@ -407,7 +407,7 @@ io.on('connection', (client) => {
 		client.emit(process.env.EVENT_SUCCEED, transactionId);	
 	});
 
-	event.on(process.env.EVENT_ON_ERROR, function(transsactionId)
+	event.on(process.env.EVENT_ON_ERROR, function(transactionId)
 	{
 		client.emit(process.env.EVENT_ON_ERROR, transactionId);	
 	});

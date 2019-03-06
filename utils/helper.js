@@ -99,7 +99,11 @@ function _sendSignedTransaction(encodeAbi, fromAddress, fromPrivateKey, toAddres
 				console.log("Transaction déjà existante.");
 				waitingCallback(process.env.EVENT_RETRY);
 			}
-
+			else if(error.message.startsWith("nonce too low"))
+			{
+				console.log("Error : nonce too low");
+				waitingCallback(process.env.EVENT_RETRY);
+			}
 			else if(error.message.startsWith("Returned error: insufficient funds for gas * price + value"))
 			{
 				console.log("Le compte éméteur ne dispose pas d'assez d'ether.");
