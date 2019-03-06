@@ -9,7 +9,6 @@ const io 			= require('socket.io')();
 const compiledCode 	= require('./smart-contract/DanapayToken');
 const Helper 		= require('./utils/helper');
 
-
 const app 			= express();
 var event 			= new eventEmitter();
 
